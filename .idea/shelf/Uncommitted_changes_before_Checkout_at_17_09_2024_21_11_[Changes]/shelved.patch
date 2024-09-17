@@ -1,0 +1,48 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from colors import color_coefficients\r\nfrom parts import part_coefficients\r\nfrom paintMethods import paintMethod_coefficients\r\nfrom calculator import calculate_cost\r\n\r\n# Базовая стоимость\r\nbase_price = 12000\r\n\r\n# Ввод данных\r\npart = input(\"Введите наименование детали: \").lower()\r\ncolor = input(\"Введите цвет: \").lower()\r\npaintMethod = input(\"Введите метод покраски: \").lower()\r\n\r\ntry:\r\n    # Рассчитываем стоимость\r\n    total_cost = calculate_cost(base_price, part, color, paintMethod, part_coefficients, color_coefficients, paintMethod_coefficients)\r\n    print(f\"Стоимость покраски: {total_cost} рублей\")\r\nexcept ValueError as e:\r\n    print(e)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 7dc16a57bdb2c73265c0b9a4efb5041bd3100aa6)
++++ b/main.py	(date 1726596591233)
+@@ -2,6 +2,7 @@
+ from parts import part_coefficients
+ from paintMethods import paintMethod_coefficients
+ from calculator import calculate_cost
++from workload import workload_coefficients
+ 
+ # Базовая стоимость
+ base_price = 12000
+@@ -10,10 +11,11 @@
+ part = input("Введите наименование детали: ").lower()
+ color = input("Введите цвет: ").lower()
+ paintMethod = input("Введите метод покраски: ").lower()
++workload = input("Введите загруженность сервиса: ").lower()
+ 
+ try:
+     # Рассчитываем стоимость
+-    total_cost = calculate_cost(base_price, part, color, paintMethod, part_coefficients, color_coefficients, paintMethod_coefficients)
++    total_cost = calculate_cost(base_price, part, color, paintMethod, part_coefficients, color_coefficients, paintMethod_coefficients, workload_coefficients)
+     print(f"Стоимость покраски: {total_cost} рублей")
+ except ValueError as e:
+     print(e)
+\ No newline at end of file
+Index: workload.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/workload.py b/workload.py
+new file mode 100644
+--- /dev/null	(date 1726596591237)
++++ b/workload.py	(date 1726596591237)
+@@ -0,0 +1,5 @@
++workload_coefficients = {
++    "легкая": 1,
++    "средняя": 1.2,
++    "тяжелая": 1.4,
++}
+\ No newline at end of file
